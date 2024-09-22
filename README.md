@@ -3,7 +3,12 @@
 Every and what you need to install:
 1) ng new my-app --no-standalone --routing --ssr=false
 2) npm install json-server --save
-3) 
+3) npm install concurrently --save
+4) Result after installing n°3:  
+"start": "concurrently \" ng serve\" \" json-server --watch db.json\"",
+5) npm i --save jquery
+6) npm i --save bootstrap
+7) npm i --save font-awesome
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
 
