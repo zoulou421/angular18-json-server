@@ -14,6 +14,7 @@ export class ProductsService {
   //all Product list
   getAllProducts():Observable<Product[]>{
     let host=environment.host;
+    //let host=environment.hostUnreached;
     return this.myHttp.get<Product[]>(host+"/products");
   }
 
