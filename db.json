@@ -6,7 +6,7 @@
             "price":4200,
             "quantity":600,
             "selected":true,
-            "available":true
+            "available":false
         },
         {
             "id":2,
@@ -21,7 +21,7 @@
             "name":"Printer",
             "price":5200,
             "quantity":400,
-            "selected":true,
+            "selected":false,
             "available":true
         }
     ]

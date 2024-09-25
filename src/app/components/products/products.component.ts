@@ -11,6 +11,7 @@ import { AppDataState, DataStateEnum } from '../../state/product.state';
 })
 export class ProductsComponent implements OnInit {
 
+
   //products?:Product[]; //products: Product[] | undefined;
   //products:Product[]|null=null;
   //products!:Product[];
@@ -42,6 +43,39 @@ export class ProductsComponent implements OnInit {
     startWith({dataState:DataStateEnum.LOADING}),
     catchError(err=>of({dataState:DataStateEnum.ERROR,errorMessage:err.message}))
    );
+  }
+
+  onGetSelectedProducts() {
+    this.products$=this.productsService.getSelectedProducts().pipe(
+      map(data=>{
+         console.log(data);
+        return ({dataState:DataStateEnum.LOADED,data:data})
+      }),
+      startWith({dataState:DataStateEnum.LOADING}),
+      catchError(err=>of({dataState:DataStateEnum.ERROR,errorMessage:err.message}))
+     );
+  }
+
+  onGetAvailableProducts() {
+    this.products$=this.productsService.getAvailableProducts().pipe(
+      map(data=>{
+         console.log(data);
+        return ({dataState:DataStateEnum.LOADED,data:data})
+      }),
+      startWith({dataState:DataStateEnum.LOADING}),
+      catchError(err=>of({dataState:DataStateEnum.ERROR,errorMessage:err.message}))
+     );
+  }
+
+  onSearch(dataForm: any) {
+    this.products$=this.productsService.getBySearchProducts(dataForm.keyword).pipe(
+      map(data=>{
+         console.log(data);
+        return ({dataState:DataStateEnum.LOADED,data:data})
+      }),
+      startWith({dataState:DataStateEnum.LOADING}),
+      catchError(err=>of({dataState:DataStateEnum.ERROR,errorMessage:err.message}))
+     );
   }
  
 }
