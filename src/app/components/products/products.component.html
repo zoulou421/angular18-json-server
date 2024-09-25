@@ -50,19 +50,40 @@
      </ng-container>
    
       <ng-container *ngSwitchCase="UIDataStateEnum.LOADED">
-       <table class="table  table-bordered">
-           <tr>
-              <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Selected</th><th>Available</th>
-           </tr>
-           <tr *ngFor="let p of result.data">
-              <td>{{p.id}}</td>
-              <td>{{p.name}}</td>
-              <td>{{p.price}}</td>
-              <td>{{p.quantity}}</td>
-              <td>{{p.selected}}</td>
-              <td>{{p.available}}</td>
-           </tr>
-        </table>
+       <div class="table-responsive">
+         <table class="table table-hover table-striped table-bordered align-middle text-center">
+            <thead class="table-dark">
+               <tr>
+                  <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Selected</th><th>Available</th>
+               </tr>
+            </thead>
+            
+            <tbody>
+               <tr *ngFor="let p of result.data">
+                  <td>{{p.id}}</td>
+                  <td>{{p.name}}</td>
+                  <td>{{p.price}}</td>
+                  <td>{{p.quantity}}</td>
+                  <td>{{p.selected}}</td>
+                  <td>{{p.available}}</td>
+                  <td>
+                   <button (click)="onSelect(p)" [ngClass]="p.selected?'btn-success':'btn-danger'" class="btn btn-xl">
+                      <span *ngIf="p.selected">select</span>
+                      <span *ngIf="!p.selected">Unselect</span>
+                  </button>
+                </td>
+
+
+                <td>
+                   <button (click)="onDelete(p)"  class="btn btn-danger">
+                      <span class="fa fa-trash-o"></span>
+                  </button>
+                </td>
+               </tr>
+            </tbody>
+
+         </table>
+       </div>
      </ng-container>
    
    

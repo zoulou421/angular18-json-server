@@ -10,8 +10,6 @@ import { AppDataState, DataStateEnum } from '../../state/product.state';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
-
-
   //products?:Product[]; //products: Product[] | undefined;
   //products:Product[]|null=null;
   //products!:Product[];
@@ -77,5 +75,22 @@ export class ProductsComponent implements OnInit {
       catchError(err=>of({dataState:DataStateEnum.ERROR,errorMessage:err.message}))
      );
   }
- 
+
+  onSelect(product: Product) {
+    this.productsService.getOneSelectProduct(product)
+    .subscribe(data=>{
+      product.selected=data.selected;
+    })
+  }
+    
+  onDelete(p: Product) {
+    let v=confirm("Are you sure you want to delete it? ")
+    if(v==true){
+      this.productsService.deleteSelectedProduct(p)
+      .subscribe(data=>{
+        this.onGetAllProducts();
+         })
+    }
+   
+  }
 }

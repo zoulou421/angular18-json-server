@@ -32,11 +32,26 @@ export class ProductsService {
    return this.myHttp.get<Product[]>(`${host}/products?available=true`);
  }
 
-  //Available products
+  //Search products
   getBySearchProducts(keyword:String):Observable<Product[]>{
     let host=environment.host;
    // return this.myHttp.get<Product[]>(host+"/products?available=true");
      return this.myHttp.get<Product[]>(`${host}/products?name=${keyword}`);
+   }
+
+    //Select products
+  getOneSelectProduct(product:Product):Observable<Product>{
+    let host=environment.host;
+    product.selected=!product.selected;
+   // return this.myHttp.get<Product[]>(host+"/products?available=true");
+   return this.myHttp.put<Product>(host+"/products/"+product.id,product);
+   }
+
+     //Select products
+  deleteSelectedProduct(product:Product):Observable<void>{
+    let host=environment.host;
+    product.selected=!product.selected;
+   return this.myHttp.delete<void>(host+"/products/"+product.id);
    }
 
 }
